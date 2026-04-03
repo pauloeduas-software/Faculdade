@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    /* Configurações do Módulo - AS MAIS IMPORTANTES */
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* Configurações Essenciais para TypeORM */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Boas Práticas */
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    /* Estrutura do Projeto */
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"], // CORRIGIDO: Inclui todos os arquivos dentro da pasta src
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,25 @@
+# Build artifacts
+out/
+target/
+bin/
+output/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper
+mvnw
+mvnw.cmd
+.mvn/
