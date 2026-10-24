@@ -1,11 +1,11 @@
-# TaskHero - Gamificacão de Produtividade
+# App de Tarefas Gamificado (Android)
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?logo=jetpack-compose&logoColor=white)](https://developer.android.com/jetpack/compose)
 [![Firebase](https://img.shields.io/badge/Firebase-DD2C00?logo=firebase&logoColor=white)](https://firebase.google.com/)
 [![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com/android)
 
-TaskHero é um aplicativo Android que transforma listas de tarefas em uma jornada de RPG. O jogo permite ganhar XP, acumular ouro e evoluir o personagem conforme o usuário conclui suas atividades diárias.
+Aplicativo Android que transforma listas de tarefas em uma jornada de RPG. O jogo permite ganhar XP, acumular ouro e evoluir o personagem conforme o usuário conclui suas atividades diárias.
 
 ---
 

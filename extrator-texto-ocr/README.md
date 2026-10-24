@@ -65,12 +65,12 @@ O **Extrator de Texto** é uma ferramenta de reconhecimento ótico de caracteres
 ### Via Docker
 1. **Construa a imagem**
    ```bash
-   docker build -t ocr-extractor .
+   docker build -t extrator-texto-ocr .
    ```
 
 2. **Rode o container**
    ```bash
-   docker run -p 8080:80 ocr-extractor
+   docker run -p 8080:80 extrator-texto-ocr
    ```
 
 ---

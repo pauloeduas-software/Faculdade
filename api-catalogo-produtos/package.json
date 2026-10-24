@@ -1,7 +1,7 @@
 {
-  "name": "projetoapi",
+  "name": "api-catalogo-produtos",
   "version": "1.0.0",
-  "description": "\"",
+  "description": "API REST de catálogo de produtos com autenticação JWT",
   "main": "index.js",
   "scripts": {
     "build": "tsc",

@@ -1,4 +1,4 @@
-# ShopFlow-API - API de E-commerce
+# API de Catálogo de Produtos
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -6,7 +6,7 @@
 [![TypeORM](https://img.shields.io/badge/TypeORM-FE0808?logo=typeorm&logoColor=white)](https://typeorm.io/)
 [![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
 
-ShopFlow-API é um motor de back-end escalável construído com Node.js e TypeScript, focado na gestão de produtos, categorias e controle de estoque para lojas virtuais.
+API REST construída com Node.js e TypeScript para gerenciar o catálogo de uma loja virtual: produtos, categorias e situações, com cadastro de usuários e autenticação JWT.
 
 ---
 
@@ -55,12 +55,20 @@ ShopFlow-API é um motor de back-end escalável construído com Node.js e TypeSc
    ```bash
    npm install
    ```
-2. Configure as variáveis de ambiente no arquivo `.env`.
-3. Execute as migrations:
+2. Crie o `.env` a partir do exemplo e preencha os dados do seu PostgreSQL e o `JWT_SECRET`:
    ```bash
-   npm run typeorm migration:run
+   cp .env.example .env
    ```
-4. Inicie o servidor:
+3. Compile o projeto (as migrations rodam a partir do código compilado):
+   ```bash
+   npm run build
+   ```
+4. Crie as tabelas e, se quiser, popule o banco com dados de exemplo:
+   ```bash
+   npx typeorm migration:run -d dist/data-source.js
+   node dist/run-seeds.js
+   ```
+5. Inicie o servidor (por padrão em http://localhost:8080):
    ```bash
    npm run start:watch
    ```
