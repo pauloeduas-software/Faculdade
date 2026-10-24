@@ -18,6 +18,7 @@ Esta é uma seleção dos meus principais trabalhos: escolhi os que melhor mostr
 
 | Projeto | O que é | Tecnologias |
 | :--- | :--- | :--- |
+| [Sistema de Vendas](sistema-vendas-banco) | Cadastros e vendas integrados aos sistemas de outras equipes pelo banco de dados: recebe entregas de uma view, com validação, transações e log, e fornece as vendas em outra view com acesso restrito | React, Express, PostgreSQL, Docker |
 | [Extrator de Texto OCR](extrator-texto-ocr) | Extrai texto de imagens no navegador com uma API de OCR na nuvem, fallback local pelo Tesseract.js e correção de erros comuns em português | React, TypeScript, Tesseract.js, Tailwind |
 | [Tarefas Gamificadas](tarefas-gamificadas) | App Android de tarefas no estilo RPG: cada tarefa concluída rende XP e ouro, que sobem o nível, desbloqueiam classes de herói e compram recompensas | Kotlin, Jetpack Compose, Firebase |
 | [API de Catálogo de Produtos](api-catalogo-produtos) | API REST de produtos, categorias e situações, com cadastro de usuários, login JWT, migrations e seeds | Node.js, TypeScript, Express, TypeORM, PostgreSQL |
