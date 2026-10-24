@@ -1,0 +1,38 @@
+# Nome fixo do projeto no Compose (senão viria do nome da pasta)
+name: grupo2
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: grupo2-postgres
+    restart: unless-stopped
+    # Regras de acesso próprias (quem conecta, de onde e em qual banco)
+    command: postgres -c hba_file=/etc/postgresql/pg_hba.conf
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      # Lidas por database/05_usuarios_permissoes.sh ao criar os usuários
+      GRUPO2_APP_PASSWORD: ${GRUPO2_APP_PASSWORD}
+      GRUPO4_INTEGRACAO_PASSWORD: ${GRUPO4_INTEGRACAO_PASSWORD}
+    ports:
+      # Porta desta máquina (POSTGRES_PORT=3002) → 5432 dentro do container
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Scripts executados em ordem alfabética apenas quando o volume está vazio
+      # (a subpasta config/ é ignorada pelo entrypoint)
+      - ./database:/docker-entrypoint-initdb.d:ro
+      - ./database/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    healthcheck:
+      # Via TCP: durante a execução dos scripts o Postgres só aceita conexões
+      # por socket local, então o container só fica healthy depois deles.
+      # Usa o grupo2_app porque o grupo2 não tem regra TCP no pg_hba.conf; o
+      # pg_isready não envia senha, só verifica se o servidor responde.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U grupo2_app -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

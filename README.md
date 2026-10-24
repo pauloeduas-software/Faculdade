@@ -12,39 +12,23 @@
 [![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
 [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?logo=hibernate&logoColor=white)](https://hibernate.org/)
 
-Este projeto com o foco em aprendizado reune varios projetos academicos, praticas de programacao, algoritmos e experiencias em varias linguagens.
+Esta é uma seleção dos meus principais trabalhos: escolhi os que melhor mostram o que aprendi ao longo do curso, e os exercícios menores ficaram de fora para manter o foco.
 
-## ✨ Projetos em Destaque
+## Projetos
 
-- **OCR Extractor**: Sistema de reconhecimento ótico de caracteres com arquitetura híbrida (Cloud + Local), utilizando **React** e **Tesseract.js** para processamento de visão computacional diretamente no navegador.
-- **TaskHero**: Aplicativo Android que transforma produtividade em RPG, utilizando **Jetpack Compose** e **Firebase** para uma experiência gamificada completa.
-- **ShopFlow-API**: Motor de e-commerce escalável construído com **Node.js**, **TypeScript** e **TypeORM**, focado em gestão de catálogo e segurança.
-- **Sistemas Academicos**: Aplicações corporativas utilizando **JavaFX**, **Hibernate** e **JPA** para gestão de sistemas acadêmicos e seus processos operacionais.
-- **Algoritmos & Estruturas**: Implementações puras em **C** e **Java** focadas em performance e fundamentos de ciência da computação.
+| Projeto | O que é | Tecnologias |
+| :--- | :--- | :--- |
+| [Sistema de Vendas](sistema-vendas) | Cadastros e vendas integrados aos sistemas de outras equipes pelo banco de dados: recebe entregas de uma view, com validação, transações e log, e fornece as vendas em outra view com acesso restrito | React, Express, PostgreSQL, Docker |
+| [Extrator de Texto OCR](extrator-texto-ocr) | Extrai texto de imagens no navegador com uma API de OCR na nuvem, fallback local pelo Tesseract.js e correção de erros comuns em português | React, TypeScript, Tesseract.js, Tailwind |
+| [Tarefas Gamificadas](tarefas-gamificadas) | App Android de tarefas no estilo RPG: cada tarefa concluída rende XP e ouro, que sobem o nível, desbloqueiam classes de herói e compram recompensas | Kotlin, Jetpack Compose, Firebase |
+| [API de Catálogo de Produtos](api-catalogo-produtos) | API REST de produtos, categorias e situações, com cadastro de usuários, login JWT, migrations e seeds | Node.js, TypeScript, Express, TypeORM, PostgreSQL |
+| [Gestão Acadêmica](gestao-academica) | Aplicação desktop para cadastrar cursos, disciplinas, professores e turmas, com camada DAO e validação | JavaFX, Hibernate/JPA, PostgreSQL |
 
-## 🛠️ Tech Stack
+## Estruturas de Dados
 
-| Categoria | Tecnologia |
-| :--- | :--- |
-| **Inteligência Artificial** | TypeScript, Tesseract.js, OCR.space API, React, Vite |
-| **Mobile** | Kotlin, Jetpack Compose, MVVM, Firebase Firestore/Auth |
-| **Backend** | Node.js, TypeScript, Express, TypeORM, PostgreSQL, JWT |
-| **Java** | JavaFX, Maven, Hibernate, JPA, Java SE |
-| **Fundamentos** | Linguagem C, Árvores AVL, Tabelas Hash, Algoritmos de Ordenação |
-
-## 📂 Estrutura Arquitetural
-
-```text
-├── android/
-│   └── task-hero/           # App Mobile: Gamificação de tarefas (Kotlin + Compose)
-├── backend/
-│   └── shopflow-api/        # API Rest: E-commerce Engine (Node + TypeScript)
-├── inteligencia-artificial/
-│   └── ocr-extractor/       # Visão Computacional: Extrator de Texto (React + TS)
-├── estrutura-de-dados/      # Árvores AVL, Tabelas Hash e Ordenação em C
-├── java/                    # diferentes tipos de ordenações, menus escolares e etc em java
-├── java-fx/                 # Sistemas Academicos com Interface Gráfica (JPA/Hibernate)
-└── README.md                # Documentação Principal
-```
-
----
+| Estrutura | O que é | Linguagem |
+| :--- | :--- | :--- |
+| [Árvore AVL](estruturas-de-dados/arvore-avl) | Catálogo de livros que compara a AVL com a árvore binária de busca: rotações, altura, desempenho e visualização com Graphviz | Java |
+| [Árvore B](estruturas-de-dados/arvore-b) | Árvore B de ordem 7 com divisão de nós e listagem paginada das chaves | C |
+| [Tabela Hash](estruturas-de-dados/tabela-hash) | Cadastro de pessoas por CPF com encadeamento e contagem de colisões | Java |
+| [Ordenação](estruturas-de-dados/ordenacao) | Bubble, Selection, Insertion, Quick, Heap e Merge Sort aplicados a uma mão de cartas | Java |
