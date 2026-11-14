@@ -1,0 +1,26 @@
+# Sem "ports:" de proposito: o Dokploy expoe os servicos pelo dominio configurado
+# (front na porta 3000, back na 3001). "expose" so documenta a porta interna.
+services:
+  api:
+    build: { context: ., dockerfile: Dockerfile.api }
+    environment:
+      PORT: ${PORT:-3001}
+      API_KEYS: ${API_KEYS:-vendas-admin-key:admin,estoque-key:leitura}
+      ENTREGAS_URL: ${ENTREGAS_URL:-https://grupo7-apirest.ioshuavps.com.br/api/v1}
+      ENTREGAS_API_KEY: ${ENTREGAS_API_KEY:-}
+    volumes: [vendas-data:/data]
+    expose: ["3001"]
+    restart: unless-stopped
+
+  front:
+    build: { context: ., dockerfile: Dockerfile.front }
+    environment:
+      FRONT_PORT: ${FRONT_PORT:-3000}
+      API_HOST: api
+      API_PORT: ${PORT:-3001}
+    depends_on: [api]
+    expose: ["3000"]
+    restart: unless-stopped
+
+volumes:
+  vendas-data:

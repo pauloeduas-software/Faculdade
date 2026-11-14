@@ -11,6 +11,8 @@
 [![TypeORM](https://img.shields.io/badge/TypeORM-FE0808?logo=typeorm&logoColor=white)](https://typeorm.io/)
 [![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
 [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?logo=hibernate&logoColor=white)](https://hibernate.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
 
 Esta é uma seleção dos meus principais trabalhos: escolhi os que melhor mostram o que aprendi ao longo do curso, e os exercícios menores ficaram de fora para manter o foco.
 
@@ -18,7 +20,8 @@ Esta é uma seleção dos meus principais trabalhos: escolhi os que melhor mostr
 
 | Projeto | O que é | Tecnologias |
 | :--- | :--- | :--- |
-| [Sistema de Vendas](sistema-vendas-banco) | Cadastros e vendas integrados aos sistemas de outras equipes pelo banco de dados: recebe entregas de uma view, com validação, transações e log, e fornece as vendas em outra view com acesso restrito | React, Express, PostgreSQL, Docker |
+| [Sistema de Vendas (banco de dados)](sistema-vendas-banco) | Cadastros e vendas integrados aos sistemas de outras equipes pelo banco de dados: recebe entregas de uma view, com validação, transações e log, e fornece as vendas em outra view com acesso restrito | React, Express, PostgreSQL, Docker |
+| [Sistema de Vendas (API REST)](sistema-vendas-api) | O mesmo sistema integrado às outras equipes só por HTTP: fornece uma API versionada com Swagger, chave por perfil e idempotência, e consome a API de entregas de outra equipe com timeout, novas tentativas e validação do contrato; 32 testes automatizados | Node.js, TypeScript, Express, SQLite, React, Docker |
 | [Extrator de Texto OCR](extrator-texto-ocr) | Extrai texto de imagens no navegador com uma API de OCR na nuvem, fallback local pelo Tesseract.js e correção de erros comuns em português | React, TypeScript, Tesseract.js, Tailwind |
 | [Tarefas Gamificadas](tarefas-gamificadas) | App Android de tarefas no estilo RPG: cada tarefa concluída rende XP e ouro, que sobem o nível, desbloqueiam classes de herói e compram recompensas | Kotlin, Jetpack Compose, Firebase |
 | [API de Catálogo de Produtos](api-catalogo-produtos) | API REST de produtos, categorias e situações, com cadastro de usuários, login JWT, migrations e seeds | Node.js, TypeScript, Express, TypeORM, PostgreSQL |

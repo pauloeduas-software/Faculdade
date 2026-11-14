@@ -1,0 +1,8 @@
+# node_modules da maquina tem binarios nativos (glibc) que nao rodam no Alpine; a imagem instala os seus.
+node_modules
+dist
+.env
+*.db
+*.db-*
+docs
+services/vendas-api/test

@@ -5,6 +5,8 @@ Trabalho prático de Integração de Aplicações por Banco de Dados. O Sistema 
 - **consome** as entregas do Grupo 7 (Sistema de Entregas): lê uma view do banco deles, valida, transforma e grava no nosso banco (`server/integracao/`);
 - **fornece** ao Grupo 4 (Sistema de Estoque) os itens vendidos, numa view do nosso banco (`integracao.vw_integracao_vendas`).
 
+> O mesmo sistema também foi feito com integração **por API REST**, em [`sistema-vendas-api`](../sistema-vendas-api).
+
 Stack: React + Vite (`src/`), Express + `pg` com SQL parametrizado, sem ORM (`server/`), PostgreSQL 16 no Docker (`database/`).
 
 Pré-requisitos: Docker com Compose, Node 20.19+ (ou 22.12+, exigência do Vite) e npm ou bun.

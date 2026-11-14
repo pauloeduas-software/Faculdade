@@ -1,0 +1,332 @@
+.app { min-height: 100vh; background: var(--fundo); }
+
+/* ------------------------------------------------------------------ cabeçalho */
+/* Nome à esquerda, índice no meio, situação da API e chave à direita, fio duplo embaixo */
+.cabecalho-sistema {
+  width: min(100% - 4rem, var(--largura-pagina));
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem 2rem;
+  padding: 1.1rem 0 0.65rem;
+  border-bottom: 3px double var(--tinta);
+}
+.marca { display: flex; align-items: center; gap: 0.75rem; color: var(--tinta); }
+.marca strong { display: block; font-family: var(--fonte-serifa); font-size: 1.35rem; font-weight: 650; line-height: 1.1; letter-spacing: -0.005em; }
+.marca small { display: block; color: var(--texto-fraco); font-size: 0.9rem; font-weight: 500; line-height: 1.3; }
+.marca-logo {
+  padding-right: 0.75rem;
+  border-right: 1px solid var(--filete-forte);
+  font-family: var(--fonte-serifa);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--destaque);
+}
+
+.menu { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem; flex: 1; }
+.menu button {
+  position: relative;
+  padding: 0.3rem 0.65rem;
+  border: none;
+  border-radius: var(--raio);
+  background: none;
+  color: var(--tinta);
+  font-weight: 500;
+  cursor: pointer;
+}
+.menu button:hover { color: var(--destaque); text-decoration: underline; text-decoration-thickness: 1px; }
+.menu button.ativa { color: var(--destaque-escuro); font-weight: 700; }
+/* O item ativo "pinta" o fio duplo embaixo dele, como um marcador de página */
+.menu button.ativa::after {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: calc(-0.65rem - 3px);
+  height: 3px;
+  background: var(--destaque);
+}
+
+.topo { display: flex; align-items: center; gap: 1rem; }
+.topo label { flex-direction: row; align-items: center; gap: 0.5rem; }
+.topo input { width: 11rem; padding: 0.3rem 0.55rem; font-family: var(--fonte-mono); font-size: 0.82rem; }
+
+/* Situação da API: semáforo com texto */
+.status { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 600; font-size: 0.92rem; color: var(--texto-fraco); white-space: nowrap; }
+.status::before { content: ''; width: 0.72rem; height: 0.72rem; border-radius: 50%; background: var(--filete-forte); }
+.status.on { color: var(--sucesso); }
+.status.on::before { background: #2b8a57; }
+.status.off { color: var(--perigo); }
+.status.off::before { background: var(--perigo); }
+
+/* ------------------------------------------------------------------- conteúdo */
+main { width: min(100% - 4rem, var(--largura-pagina)); margin: 0 auto; padding: 1.7rem 0 3rem; }
+.pagina { margin-bottom: 1.2rem; }
+.pagina p { margin: 0.35rem 0 0; max-width: 62rem; color: var(--texto-fraco); }
+.dica { color: var(--texto-fraco); font-size: 0.92rem; margin: 0 0 1rem; }
+.barra { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.barra > button:last-child { margin-left: auto; }
+.barra > select { width: auto; min-width: 11rem; }
+
+/* ------------------------------------------------------------------ controles */
+input,
+select {
+  width: 100%;
+  padding: 0.48rem 0.65rem;
+  border: 1px solid var(--borda-controle);
+  border-radius: var(--raio);
+  background: var(--superficie);
+}
+/* Seta própria no select (a nativa muda de sistema para sistema) */
+select {
+  appearance: none;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231d1c19' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+}
+input::placeholder { color: #7a7467; }
+input:focus,
+select:focus { outline: 2px solid var(--destaque); outline-offset: 0; border-color: var(--destaque); }
+input[type='checkbox'] { width: auto; accent-color: var(--destaque); }
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--borda-controle);
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--tinta);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: var(--superficie); border-color: var(--tinta); }
+button:disabled { opacity: 0.5; cursor: wait; }
+button.primario { background: var(--destaque); border-color: var(--destaque); color: #fffdf8; }
+button.primario:hover:not(:disabled) { background: var(--destaque-escuro); border-color: var(--destaque-escuro); }
+button.perigo { color: var(--perigo); border-color: #c99183; }
+button.perigo:hover:not(:disabled) { border-color: var(--perigo); }
+
+label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.93rem; font-weight: 600; color: var(--tinta); }
+
+/* ----------------------------------------------------------------- formulário */
+form { max-width: 820px; }
+form fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.3rem;
+  align-items: end;
+  border: 0;
+  border-top: 1px solid var(--filete-forte);
+  margin: 0;
+  padding: 1.1rem 0 1.3rem;
+}
+form fieldset > label { flex: 1 1 10rem; }
+form legend { float: left; width: 100%; padding: 0 0 0.2rem; font-family: var(--fonte-serifa); font-size: 1.2rem; font-weight: 600; }
+.larga { flex: 2 1 280px !important; }
+.item { display: flex; flex-wrap: wrap; gap: 0.8rem 1.1rem; align-items: end; flex-basis: 100%; }
+.item > label { flex: 1 1 8rem; }
+.item > label:first-child { flex-basis: 12rem; }
+.botoes { display: flex; gap: 0.6rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--filete); }
+
+/* ----------------------------------------------------------------- indicadores */
+/* Uma faixa de números separados por filetes, como num quadro de jornal */
+.kpis,
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  margin: 0.3rem 0 1rem;
+  border-top: 1px solid var(--tinta);
+  border-bottom: 1px solid var(--filete);
+}
+.kpi,
+.resumo div { padding: 0.55rem 1rem 0.65rem; border-left: 1px solid var(--filete); }
+.kpi:first-child,
+.resumo div:first-child { padding-left: 0.3rem; border-left: none; }
+.kpi span,
+.resumo dt { display: block; font-size: 0.9rem; font-weight: 600; color: var(--texto-rotulo); }
+.kpi b,
+.resumo dd {
+  display: block;
+  margin: 0;
+  font-family: var(--fonte-serifa);
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.kpi.pos b { color: var(--sucesso); }
+.kpi.ruim b,
+.resumo .alerta dd { color: var(--perigo); }
+
+/* -------------------------------------------------------------------- tabelas */
+.tabela { overflow-x: auto; }
+/* Tabela à moda dos livros: fio forte abre, fio de tinta fecha, filete fino entre
+   as linhas e nenhuma linha vertical */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--tinta);
+  border-bottom: 1px solid var(--tinta);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+th,
+td { text-align: left; padding: 0.52rem 0.8rem; border-bottom: 1px solid var(--filete); vertical-align: middle; }
+th:first-child,
+td:first-child { padding-left: 0.3rem; }
+th:last-child,
+td:last-child { padding-right: 0.3rem; }
+th { padding-top: 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--tinta); font-size: 0.92rem; font-weight: 600; color: var(--texto-rotulo); white-space: nowrap; }
+tbody tr:last-child td { border-bottom: none; }
+td.num { text-align: right; font-family: var(--fonte-serifa); font-size: 1.05rem; }
+th.num { text-align: right; }
+td.id { font-family: var(--fonte-mono); font-size: 0.9em; }
+.linha { cursor: pointer; }
+.linha:hover td { background: var(--superficie-2); }
+
+/* Detalhe da venda aberto embaixo da linha: folha branca com fio de tinta na margem */
+.detalhe td { padding: 0.9rem 1.1rem 1.1rem; background: var(--superficie); border-left: 3px solid var(--tinta); font-size: 0.95rem; }
+.detalhe ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+
+/* Ações das linhas como texto sublinhado: pares de botões com borda viram ruído */
+.acoes { display: flex; gap: 0.2rem; justify-content: flex-end; }
+.acoes button {
+  padding: 0.2rem 0.6rem;
+  border-color: transparent;
+  background: none;
+  color: var(--destaque);
+  font-size: 0.87rem;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+.acoes button:hover:not(:disabled) { border-color: transparent; background: none; text-decoration-color: currentColor; }
+.acoes button.perigo { color: var(--perigo); }
+
+/* --------------------------------------------------------------------- status */
+/* Status como texto com um marcador, em vez de pílula colorida. A forma do
+   marcador também muda (não depende só da cor): ○ aguardando, ● confirmada/entregue,
+   ◐ em trânsito, ◆ devolvida, ■ cancelada */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42em;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--texto-fraco);
+}
+.tag::before { content: ''; flex: none; width: 0.64em; height: 0.64em; border-radius: 50%; background: currentColor; }
+.tag.CONFIRMADA { color: var(--info); }
+.tag.CANCELADA,
+.tag.ent-CANCELADA,
+.tag.ent-NAO_ENTREGUE { color: var(--perigo); }
+.tag.CANCELADA::before,
+.tag.ent-CANCELADA::before,
+.tag.ent-NAO_ENTREGUE::before { border-radius: 0; }
+.tag.ent-ENTREGUE { color: var(--sucesso); }
+.tag.ent-AGUARDANDO_COLETA::before { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+.tag.ent-EM_TRANSITO,
+.tag.ent-SAIU_PARA_ENTREGA { color: var(--roxo); }
+.tag.ent-EM_TRANSITO::before,
+.tag.ent-SAIU_PARA_ENTREGA::before { background: linear-gradient(90deg, currentColor 50%, transparent 50%); box-shadow: inset 0 0 0 1.5px currentColor; }
+.tag.ent-DEVOLVIDA { color: var(--aviso); }
+.tag.ent-DEVOLVIDA::before { border-radius: 1px; transform: rotate(45deg) scale(0.85); }
+
+/* --------------------------------------------------------------------- alertas */
+/* Nota com fio na margem esquerda e fundo levemente tingido */
+.aviso { margin: 0 0 1rem; padding: 0.65rem 0.95rem; border-left: 3px solid var(--perigo); background: var(--perigo-claro); color: #6e1f10; }
+.aviso ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+section > .ok { margin-top: 1rem; padding: 0.65rem 0.95rem; border-left: 3px solid var(--sucesso); background: var(--sucesso-claro); color: #164d33; }
+.motivo { color: var(--texto-fraco); }
+/* Lista vazia: nota em itálico entre os mesmos fios da tabela */
+.vazio {
+  margin: 0;
+  padding: 2.2rem 1rem;
+  border-top: 2px solid var(--tinta);
+  border-bottom: 1px solid var(--tinta);
+  text-align: center;
+  font-family: var(--fonte-serifa);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--texto-fraco);
+}
+code { font-family: var(--fonte-mono); font-size: 0.88em; }
+
+/* -------------------------------------------------------- entrega (rastreio) */
+.rastreio { margin-top: 0.9rem; display: grid; gap: 0.6rem; justify-items: start; }
+.rastreio .aviso { margin: 0; }
+.entrega { width: 100%; padding-top: 0.7rem; border-top: 1px solid var(--filete-forte); display: grid; gap: 0.7rem; }
+.entrega-topo { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; }
+.entrega-topo b { font-family: var(--fonte-mono); font-size: 0.92rem; font-weight: 500; }
+.entrega dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.6rem 1.6rem; margin: 0; }
+.entrega dt { font-size: 0.88rem; font-weight: 500; color: var(--texto-fraco); }
+.entrega dd { margin: 0.05rem 0 0; font-family: var(--fonte-serifa); font-size: 1.12rem; line-height: 1.35; }
+.entrega ol { margin: 0; padding-left: 1.2rem; }
+.entrega ol span { color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------- logs de integração */
+.check { flex-direction: row; align-items: center; gap: 0.4rem; font-weight: 500; }
+/* Filtro como abas: texto com fio verde embaixo da escolhida */
+.seg { display: inline-flex; gap: 0 1.2rem; border-bottom: 1px solid var(--filete-forte); }
+.seg button { padding: 0.3rem 0 0.4rem; margin-bottom: -1px; border: none; border-bottom: 3px solid transparent; border-radius: 0; background: none; color: var(--texto-fraco); }
+.seg button:hover:not(:disabled) { background: none; color: var(--tinta); }
+.seg button.ativa { color: var(--tinta); border-bottom-color: var(--destaque); }
+.busca { flex: 0 1 18rem; }
+.log { font-size: 0.92rem; }
+.log tbody { border-top: 1px solid var(--filete); }
+.log thead + tbody { border-top: 0; }
+.log td { border-bottom: 0; padding-top: 0.42rem; padding-bottom: 0.42rem; white-space: nowrap; }
+.log tbody.com-erro .req td:first-child { box-shadow: inset 3px 0 0 var(--perigo); }
+.log .clicavel { cursor: pointer; }
+.log .clicavel:hover td { background: var(--superficie-2); }
+.log tr.sub td { background: var(--superficie); color: var(--texto-fraco); padding-top: 0.3rem; padding-bottom: 0.3rem; }
+.log tr.sub .caminho { color: var(--tinta); }
+.hora,
+.ms { font-family: var(--fonte-mono); font-size: 0.82rem; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+th.ms,
+td.ms { text-align: right; }
+th.ms { font-family: var(--fonte); font-size: 0.92rem; color: var(--texto-rotulo); }
+.origem { color: var(--texto-fraco); }
+.seta { margin: 0 0.4rem 0 0.25rem; }
+.metodo { display: inline-block; min-width: 3.4rem; font: 600 0.75rem var(--fonte-mono); }
+.m-GET { color: var(--info); }
+.m-POST { color: var(--sucesso); }
+.m-PUT { color: var(--aviso); }
+.m-DELETE { color: var(--perigo); }
+.caminho { font-family: var(--fonte-mono); font-size: 0.84rem; }
+.tentativa { margin-left: 0.5rem; font-size: 0.75rem; color: var(--aviso); }
+.codigo { font: 600 0.82rem var(--fonte-mono); }
+.codigo.ok { color: var(--sucesso); }
+.codigo.warn { color: var(--aviso); }
+.codigo.err,
+.codigo.x { color: var(--perigo); }
+.extra { color: var(--texto-fraco); font-size: 0.82rem; }
+.chev { display: inline-block; width: 0.75rem; margin-left: 0.25rem; }
+.log tr.erro-linha td { padding-top: 0; color: var(--perigo); font-size: 0.82rem; white-space: normal; }
+.log tr.erro-linha.sub td { background: var(--superficie); }
+
+/* -------------------------------------------------------------------- telas menores */
+@media (max-width: 1000px) {
+  .topo label { display: none; }
+}
+@media (max-width: 860px) {
+  .cabecalho-sistema { flex-wrap: wrap; align-items: center; width: calc(100% - 2rem); }
+  .menu { order: 3; flex-basis: 100%; }
+  .menu button.ativa::after { display: none; }
+  .topo { margin-left: auto; }
+  main { width: calc(100% - 2rem); padding-top: 1rem; }
+}
+@media (max-width: 640px) {
+  th:nth-child(3), td:nth-child(3) { display: none; }
+  .log th:nth-child(3), .log td:nth-child(3) { display: table-cell; }
+  .log th:nth-child(2), .log td:nth-child(2), .log th:nth-child(6), .log td:nth-child(6) { display: none; }
+}

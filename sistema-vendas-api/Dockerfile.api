@@ -1,0 +1,10 @@
+FROM node:24-alpine
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+COPY services/vendas-api ./services/vendas-api
+ENV PORT=3001 DB_PATH=/data/vendas.db
+VOLUME /data
+EXPOSE 3001
+# O Node 24 executa TypeScript direto (remove os tipos), sem tsx nem etapa de build.
+CMD ["node", "services/vendas-api/src/server.ts"]

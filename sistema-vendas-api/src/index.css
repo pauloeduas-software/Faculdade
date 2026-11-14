@@ -1,0 +1,91 @@
+/* =============================================================================
+   Sistema de Vendas (Grupo 2): mesmo visual do sistema integrado por banco de dados.
+   Ideia visual: um livro-caixa bem composto. Papel claro e quente, tinta quase
+   preta, um verde-garrafa de destaque, filetes no lugar de caixas com sombra,
+   serifa nos títulos e nos valores, números tabulares alinhados.
+   Cores, espaçamentos e fontes ficam nas variáveis de :root.
+   ============================================================================= */
+:root {
+  /* Papel e tinta */
+  --papel: #f7f5f0;
+  --fundo: var(--papel);
+  --superficie: #fffefb; /* campos, detalhe da venda: o "branco" do papel */
+  --superficie-2: #efebe3; /* linha sob o mouse */
+  --tinta: #1d1c19;
+  --texto: var(--tinta);
+  --texto-fraco: #5c574d;
+  --texto-rotulo: #4a463e; /* cabeçalhos de tabela e rótulos */
+
+  /* Filetes: o fino separa linhas, o forte separa seções, a tinta abre e fecha tabelas */
+  --filete: #dcd6ca;
+  --filete-forte: #b3ab9b;
+  --borda-controle: #8c8475; /* borda de campo e botão: 3:1 sobre o papel */
+
+  /* Uma cor de destaque (verde-garrafa) e as cores de significado */
+  --destaque: #1d5a44;
+  --destaque-escuro: #154434;
+  --destaque-claro: #e1eae2;
+  --perigo: #a3301d; /* tinta vermelha do livro-caixa: cancelado, erro, excluir */
+  --perigo-escuro: #82240f;
+  --perigo-claro: #f5e3dc;
+  --sucesso: #1d6644;
+  --sucesso-claro: #e2ede3;
+  --aviso: #83560c;
+  --aviso-claro: #f5ead3;
+  --info: #244a7c; /* azul-tinta */
+  --info-claro: #e5e9ef;
+  --roxo: #683c76;
+
+  --raio: 2px;
+  --largura-pagina: 1200px;
+
+  /* Fontes da web com reserva que fica boa offline (ver index.html) */
+  --fonte: 'Archivo', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --fonte-serifa: 'Source Serif 4', 'Source Serif Pro', Charter, 'Bitstream Charter', Cambria, 'Noto Serif', Georgia, serif;
+  --fonte-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, 'Liberation Mono', monospace;
+
+  font-family: var(--fonte);
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: lining-nums;
+  color: var(--texto);
+  background: var(--fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+}
+
+::selection {
+  background: #cfe0d4;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--fonte-serifa);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco do teclado sempre visível (botões, abas) */
+:focus-visible {
+  outline: 2px solid var(--destaque);
+  outline-offset: 2px;
+}

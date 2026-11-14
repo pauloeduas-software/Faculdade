@@ -1,0 +1,49 @@
+Evidencia de testes da API de Vendas (G2) - 13/11/2026 13:19
+Comando: npm test (Node v24.21.0). Contrato com o G4 testado por HTTP como o G4 usa a API (docs/contrato-vendas-estoque-g4.md); consumo da API de Entregas do G7 contra um G7 simulado com os corpos reais do ambiente de testes deles (docs/contrato-vendas-entregas-g7.md); banco em memoria, o vendas.db nao e usado.
+
+▶ Contrato com o G4: API de Vendas
+  ✔ GET /health responde sem chave (43.808602ms)
+  ✔ autenticacao: 401 sem chave ou com chave invalida, 403 para a chave do G4 em escrita (secao 2) (21.189872ms)
+  ✔ POST registra a venda CONFIRMADA, calcula subtotais e total e devolve 201 no formato 4.1 (3.3) (14.640673ms)
+  ✔ POST repetido com a mesma Idempotency-Key devolve a venda original, sem criar outra (3.3) (7.425791ms)
+  ✔ GET /vendas: o G4 encontra as vendas a baixar e as canceladas, e filtros invalidos dao 400 (3.1) (26.407208ms)
+  ✔ GET /vendas/{id}: 200, 404 VENDA_NAO_ENCONTRADA e 400 ID_INVALIDO (3.2) (14.497888ms)
+  ✔ POST separa formato (400) de regra de negocio (422) e nao grava nada (4.2) (18.93901ms)
+  ✔ preco com 2 casas e aceito e o total sai arredondado em centavos (4.594688ms)
+  ✔ PUT segue a tabela de status; cancelar move a venda para ?status=CANCELADA (3.4) (12.835123ms)
+  ✔ DELETE: 409 para venda confirmada, 204 depois de cancelada (3.5) (11.810688ms)
+  ✔ o id de uma venda excluida nao e reutilizado (secao 4.1) (8.182183ms)
+  ✔ rota inexistente: 404 ROTA_NAO_ENCONTRADA (2.88029ms)
+  ✔ registra as chamadas recebidas com correlacao; a chave do G4 aparece como estoque-g4 (secao 7) (6.078814ms)
+✔ Contrato com o G4: API de Vendas (194.972583ms)
+▶ Cliente HTTP do consumidor (usado com o G7)
+  ✔ envia chave, correlacao, origem e Idempotency-Key e registra a chamada no log (20.146557ms)
+  ✔ X-Request-Id sempre em UUID v4: correlacao em outro formato e trocada por um UUID novo (4.029618ms)
+  ✔ 503 passageiro: nova tentativa com a mesma Idempotency-Key e a chamada passa (16.36847ms)
+  ✔ 503 em todas as tentativas: ENTREGAS_INDISPONIVEL depois de 3 chamadas (36.293045ms)
+  ✔ lentidao acima do timeout conta como indisponivel (638.891794ms)
+  ✔ G7 fora do ar: 3 tentativas registradas, sem derrubar o G2 (33.425697ms)
+  ✔ corpo que nao e JSON: 502 ENTREGAS_RESPOSTA_INVALIDA, sem nova tentativa (5.383954ms)
+  ✔ 500 tambem ganha novas tentativas; se persistir, 503 ENTREGAS_ERRO_INTERNO (43.873639ms)
+  ✔ 5xx com pagina HTML (proxy na frente do outro grupo) e falha passageira, nao resposta invalida (16.483389ms)
+  ✔ Retry-After do 503 e respeitado; acima de 10 s o G2 desiste sem esperar (1008.927931ms)
+  ✔ erroGenerico: 401/403 e status nao previsto, com o codigo do G7 na mensagem e no log (7.22781ms)
+  ✔ violacao: resposta 200 fora do contrato e recusada e marcada no log (3.905894ms)
+✔ Cliente HTTP do consumidor (usado com o G7) (1841.601637ms)
+▶ Consumo da API de Entregas do G7
+  ✔ consulta a entrega da venda e o historico, guarda o rastreio na venda e diz se mudou (regras 1, 5 e 6) (60.631597ms)
+  ✔ venda sem entrega no G7 (pedido ainda aberto): 200 com entrega null, sem chamar o historico (10.324527ms)
+  ✔ com pendencias, campos nulos sao normais; sem pendencias, nulo e quebra de contrato e a venda nao muda (regras 3 e 4) (11.400913ms)
+  ✔ resposta fora do contrato e recusada: status fora do enum, outra venda, campo ausente, tipo errado (regra 3) (17.821084ms)
+  ✔ campos novos sao ignorados (regra 7) e, com mais de uma entrega, vale a nao cancelada (7.487038ms)
+  ✔ falhas do G7: 503 passageiro e superado; 401 vira 502 ENTREGAS_AUTENTICACAO; G7 fora do ar vira 503 (34.693165ms)
+  ✔ venda inexistente: 404 sem chamar o G7; a chave do G4 nao usa a rota (403) (5.639529ms)
+✔ Consumo da API de Entregas do G7 (153.107665ms)
+ℹ tests 32
+ℹ suites 3
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1993.193966

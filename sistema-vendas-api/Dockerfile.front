@@ -1,0 +1,12 @@
+FROM node:24-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npx vite build
+
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+COPY --from=build /app/dist /usr/share/nginx/html
+ENV FRONT_PORT=3000 API_HOST=api API_PORT=3001
+EXPOSE 3000
